@@ -5,30 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | IP Address Tracker</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <title>Frontend Mentor | IP Address Tracker</title>
 </head>
 <body>
+  <div class="container">
 
-  IP Address Tracker
+    <div class="header">
+      <h1>IP Address Tracker</h1>
+      <form class="ip-form">
+        <input class="input" type="text" placeholder="Search for any IP address or domain"><!--
+        --><input class="submit" type="submit" value=">">
+      </form>
+      
+      <div class="address-card">
+        <div class="col">
+          <h2>IP Address</h2>
+        <p class="detail">192.212.174.101</p>
+        </div>
+        <div class="col">
+          <h2>Location</h2>
+          <p class="detail">some place</p>
+        </div>
+        <div class="col">
+          <h2>Timezone</h2>
+          <p class="detail">UTC + </p>
+        </div>
+        <div class="col">
+          <h2>ISP</h2>
+          <p class="detail">Space X</p>
+        </div>
+        
+      </div>
+    </div>
 
-  Search for any IP address or domain
+    <div class="main">
+      <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        Coded by <a href="#">Radu Harangus</a>.
+      </div>
+    </div>
 
-  IP Address
-  Location
-  Timezone
-    UTC <!-- add offset value dynamically using the API -->
-  ISP
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript">
+      var ip = "8.8.8.8";
+      var api_key = "at_8ImEfWwvJg9bMIiN39bWGslexvvsF";
+      $(function () {
+        $.ajax({
+            url: "https://geo.ipify.org/api/v1",
+            data: {apiKey: api_key, ipAddress: ip},
+            success: function(data) {
+                $("body").append("<pre>"+ JSON.stringify(data,"",2)+"</pre>");
+                console.log(JSON.stringify(data,"",2));
+            }
+        });
+      });
+  </script>
+
 </body>
 </html>
