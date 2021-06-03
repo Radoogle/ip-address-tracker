@@ -24,48 +24,44 @@
       <div class="address-card">
         <div class="col">
           <h2>IP Address</h2>
-        <p class="detail">192.212.174.101</p>
+          <p class="detail" id="detailIp"></p>
         </div>
         <div class="col">
           <h2>Location</h2>
-          <p class="detail">some place</p>
+          <p class="detail" id="detailLocation"></p>
         </div>
         <div class="col">
           <h2>Timezone</h2>
-          <p class="detail">UTC + </p>
+          <p class="detail" id="detailTimezone">UTC + </p>
         </div>
         <div class="col">
           <h2>ISP</h2>
-          <p class="detail">Space X</p>
+          <p class="detail" id="detailIsp">Space X</p>
         </div>
         
       </div>
-    </div>
+    </div><!--
 
-    <div class="main">
+    --><div class="main">
       <div class="attribution">
         Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
         Coded by <a href="#">Radu Harangus</a>.
       </div>
+      
+      
+      <div id="list"></div>
+
+      <p id="gfg"></p>
+
     </div>
 
   </div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript">
-      var ip = "8.8.8.8";
-      var api_key = "at_8ImEfWwvJg9bMIiN39bWGslexvvsF";
-      $(function () {
-        $.ajax({
-            url: "https://geo.ipify.org/api/v1",
-            data: {apiKey: api_key, ipAddress: ip},
-            success: function(data) {
-                $("body").append("<pre>"+ JSON.stringify(data,"",2)+"</pre>");
-                console.log(JSON.stringify(data,"",2));
-            }
-        });
-      });
-  </script>
+  <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+  <script src="app.js"></script>
 
 </body>
 </html>
