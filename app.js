@@ -40,7 +40,15 @@ function getLocation(ipAddress) {
 
 document.getElementById("submit").addEventListener('click', 
     function() { 
-        getLocation($("#inputIp").val());
+        const ip = $("#inputIp").val();
+        // ip validation with regex
+        const regex = /^((25[0-5]|(2[0-4]|1[0-9]|[1-9]|)[0-9])(\.(?!$)|$)){4}$/;
+        if (regex.test(ip)) {
+            getLocation(ip);
+        } else {
+            alert("Invalid IP address! Please correct and retry!");
+        }
+        
     });
 
 $.getJSON("https://api.ipify.org?format=json",
