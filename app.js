@@ -12,7 +12,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     // id: 'mapbox/satellite-v9',
     tileSize: 512,
     zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoicmFkdWRlIiwiYSI6ImNrcGk0ZHVxcTA2YWMyb3BubTdxOWI4cDYifQ.J65VQR3ntJ3EEXLzhXZOXA'
+    accessToken: 'pk.eyJ1IjoicmFkdWRlIiwiYSI6ImNrcGlscmV3ZzAzYzIyb3FydnM2aWhnZXgifQ.sgMKaTmLXLIGab7mQFRULQ'
 }).addTo(mymap);
 
 function getLocation(ipAddress) {
@@ -24,7 +24,7 @@ function getLocation(ipAddress) {
     //     url: "https://geo.ipify.org/api/v1",
     //     data: {apiKey: api_key, ipAddress: ipAddress},
     //     success: function(data) {
-    //     //    console.log(JSON.stringify(data,"",2));
+    //        console.log(JSON.stringify(data,"",2));
     //         const city = data.location.city; 
     //         const country = data.location.country; 
     //         const postalCode = data.location.postalCode || "no postal code";
@@ -45,6 +45,7 @@ function getLocation(ipAddress) {
         url: url,
         success: function(data) {
         //    console.log(JSON.stringify(data,"",2));
+        //    console.log(ipAddress);
             const city = data.city; 
             const country = data.country; 
             const postalCode = data.zip || "no postal code";
@@ -75,7 +76,7 @@ function getLocation(ipAddress) {
     //         $("#detailIsp").html(data.isp);
     //         navigator.geolocation.getCurrentPosition(position => {
     //             const { latitude, longitude } = position.coords;
-    //             console.log(position);
+    //             // console.log(position);
     //             mymap.setView([latitude, longitude], 13);
     //             marker = L.marker([latitude, longitude]).addTo(mymap);
     //           });
@@ -84,12 +85,14 @@ function getLocation(ipAddress) {
 }
 
 document.getElementById("submit").addEventListener('click', 
-    function() { 
-        const ip = $("#inputIp").val();
+    function(e) { 
+        e.preventDefault();
+        const inputIp = $("#inputIp").val();
         // ip validation with regex
         const regex = /^((25[0-5]|(2[0-4]|1[0-9]|[1-9]|)[0-9])(\.(?!$)|$)){4}$/;
-        if (regex.test(ip)) {
-            getLocation(ip);
+        if (regex.test(inputIp)) {
+            // console.log("getting location for IP: ", inputIp);
+            getLocation(inputIp);
         } else {
             alert("Invalid IP address! Please correct and retry!");
         }
