@@ -40,26 +40,6 @@ function getLocation(ipAddress) {
     // });
 
     // using ip-api
-    // const url = `http://ip-api.com/json/${ipAddress}?`;
-    // $.ajax({
-    //     url: url,
-    //     success: function(data) {
-    //     //    console.log(JSON.stringify(data,"",2));
-    //         const city = data.city; 
-    //         const country = data.country; 
-    //         const postalCode = data.zip || "no postal code";
-    //         const timezone = data.timezone;
-    //         $("#detailLocation").html(`${city}, ${country}, ${postalCode}`);
-    //         $("#detailTimezone").html(`${timezone}`);
-    //         $("#detailIsp").html(data.isp);
-    //         const lat = data.lat;
-    //         const lon = data.lon;
-    //         mymap.setView([lat, lon], 13);
-    //         marker = L.marker([lat, lon]).addTo(mymap);
-    //     }
-    // });
-
-    // using Geolocation API  ---->>>>>  https://w3c.github.io/geolocation-api/
     const url = `http://ip-api.com/json/${ipAddress}?`;
     $.ajax({
         url: url,
@@ -72,13 +52,35 @@ function getLocation(ipAddress) {
             $("#detailLocation").html(`${city}, ${country}, ${postalCode}`);
             $("#detailTimezone").html(`${timezone}`);
             $("#detailIsp").html(data.isp);
-            navigator.geolocation.getCurrentPosition(position => {
-                const { latitude, longitude } = position.coords;
-                mymap.setView([latitude, longitude], 13);
-                marker = L.marker([latitude, longitude]).addTo(mymap);
-              });
+            const lat = data.lat;
+            const lon = data.lon;
+            mymap.setView([lat, lon], 13);
+            marker = L.marker([lat, lon]).addTo(mymap);
         }
     });
+
+    // using Geolocation API  ---->>>>>  https://w3c.github.io/geolocation-api/
+    // only works for current location, but it the most precise location!!!!
+    // const url = `http://ip-api.com/json/${ipAddress}?`;
+    // $.ajax({
+    //     url: url,
+    //     success: function(data) {
+    //     //    console.log(JSON.stringify(data,"",2));
+    //         const city = data.city; 
+    //         const country = data.country; 
+    //         const postalCode = data.zip || "no postal code";
+    //         const timezone = data.timezone;
+    //         $("#detailLocation").html(`${city}, ${country}, ${postalCode}`);
+    //         $("#detailTimezone").html(`${timezone}`);
+    //         $("#detailIsp").html(data.isp);
+    //         navigator.geolocation.getCurrentPosition(position => {
+    //             const { latitude, longitude } = position.coords;
+    //             console.log(position);
+    //             mymap.setView([latitude, longitude], 13);
+    //             marker = L.marker([latitude, longitude]).addTo(mymap);
+    //           });
+    //     }
+    // });
 }
 
 document.getElementById("submit").addEventListener('click', 
@@ -91,7 +93,6 @@ document.getElementById("submit").addEventListener('click',
         } else {
             alert("Invalid IP address! Please correct and retry!");
         }
-        
     });
 
 $.getJSON("https://api.ipify.org?format=json",
