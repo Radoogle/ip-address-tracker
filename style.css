@@ -35,6 +35,7 @@ body {
 
 h1 {
   margin-top: 0;
+  margin-bottom: 1em;
   padding-top: 2em;
   color: #fff;
 }
@@ -96,7 +97,7 @@ h1 {
 }
 
 h1 {
-  font-size: 1.25em;
+  font-size: 2em;
 }
 
 h2 {
@@ -138,7 +139,7 @@ h2 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 1em 1.5em;
+    padding: 3em 1.5em;
   }
 
   .col + .col {

@@ -18,22 +18,44 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 function getLocation(ipAddress) {
     $("#inputIp").val(ipAddress);
     $("#detailIp").html(ipAddress);
+    
+    // using ipify
+    // $.ajax({
+    //     url: "https://geo.ipify.org/api/v1",
+    //     data: {apiKey: api_key, ipAddress: ipAddress},
+    //     success: function(data) {
+    //     //    console.log(JSON.stringify(data,"",2));
+    //         const city = data.location.city; 
+    //         const country = data.location.country; 
+    //         const postalCode = data.location.postalCode || "no postal code";
+    //         const timezone = data.location.timezone;
+    //         $("#detailLocation").html(`${city}, ${country}, ${postalCode}`);
+    //         $("#detailTimezone").html(`UTC ${timezone}`);
+    //         $("#detailIsp").html(data.isp);
+    //         const lat = data.location.lat;
+    //         const lng = data.location.lng;
+    //         mymap.setView([lat, lng], 13);
+    //         marker = L.marker([lat, lng]).addTo(mymap);
+    //     }
+    // });
+
+    // using ip-api
+    const url = `http://ip-api.com/json/${ipAddress}?`;
     $.ajax({
-        url: "https://geo.ipify.org/api/v1",
-        data: {apiKey: api_key, ipAddress: ipAddress},
+        url: url,
         success: function(data) {
-            // console.log(JSON.stringify(data,"",2));
-            const city = data.location.city; 
-            const country = data.location.country; 
-            const postalCode = data.location.postalCode || "no postal code";
-            const timezone = data.location.timezone;
+        //    console.log(JSON.stringify(data,"",2));
+            const city = data.city; 
+            const country = data.country; 
+            const postalCode = data.zip || "no postal code";
+            const timezone = data.timezone;
             $("#detailLocation").html(`${city}, ${country}, ${postalCode}`);
-            $("#detailTimezone").html(`UTC ${timezone}`);
+            $("#detailTimezone").html(`${timezone}`);
             $("#detailIsp").html(data.isp);
-            const lat = data.location.lat;
-            const lng = data.location.lng;
-            mymap.setView([lat, lng], 13);
-            marker = L.marker([lat, lng]).addTo(mymap);
+            const lat = data.lat;
+            const lon = data.lon;
+            mymap.setView([lat, lon], 13);
+            marker = L.marker([lat, lon]).addTo(mymap);
         }
     });
 }
