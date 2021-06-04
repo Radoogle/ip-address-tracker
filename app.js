@@ -24,7 +24,7 @@ function getLocation(ipAddress) {
         url: "https://geo.ipify.org/api/v1",
         data: {apiKey: api_key, ipAddress: ipAddress},
         success: function(data) {
-           console.log(JSON.stringify(data,"",2));
+        //    console.log(JSON.stringify(data,"",2));
             const city = data.location.city; 
             const country = data.location.country; 
             const postalCode = data.location.postalCode || "no postal code";
