@@ -20,45 +20,45 @@ function getLocation(ipAddress) {
     $("#detailIp").html(ipAddress);
     
     // using ipify
-    // $.ajax({
-    //     url: "https://geo.ipify.org/api/v1",
-    //     data: {apiKey: api_key, ipAddress: ipAddress},
-    //     success: function(data) {
-    //        console.log(JSON.stringify(data,"",2));
-    //         const city = data.location.city; 
-    //         const country = data.location.country; 
-    //         const postalCode = data.location.postalCode || "no postal code";
-    //         const timezone = data.location.timezone;
-    //         $("#detailLocation").html(`${city}, ${country}, ${postalCode}`);
-    //         $("#detailTimezone").html(`UTC ${timezone}`);
-    //         $("#detailIsp").html(data.isp);
-    //         const lat = data.location.lat;
-    //         const lng = data.location.lng;
-    //         mymap.setView([lat, lng], 13);
-    //         marker = L.marker([lat, lng]).addTo(mymap);
-    //     }
-    // });
-
-    // using ip-api
-    const url = `http://ip-api.com/json/${ipAddress}?`;
     $.ajax({
-        url: url,
+        url: "https://geo.ipify.org/api/v1",
+        data: {apiKey: api_key, ipAddress: ipAddress},
         success: function(data) {
-        //    console.log(JSON.stringify(data,"",2));
-        //    console.log(ipAddress);
-            const city = data.city; 
-            const country = data.country; 
-            const postalCode = data.zip || "no postal code";
-            const timezone = data.timezone;
+           console.log(JSON.stringify(data,"",2));
+            const city = data.location.city; 
+            const country = data.location.country; 
+            const postalCode = data.location.postalCode || "no postal code";
+            const timezone = data.location.timezone;
             $("#detailLocation").html(`${city}, ${country}, ${postalCode}`);
-            $("#detailTimezone").html(`${timezone}`);
+            $("#detailTimezone").html(`UTC ${timezone}`);
             $("#detailIsp").html(data.isp);
-            const lat = data.lat;
-            const lon = data.lon;
-            mymap.setView([lat, lon], 13);
-            marker = L.marker([lat, lon]).addTo(mymap);
+            const lat = data.location.lat;
+            const lng = data.location.lng;
+            mymap.setView([lat, lng], 13);
+            marker = L.marker([lat, lng]).addTo(mymap);
         }
     });
+
+    // using ip-api
+    // const url = `http://ip-api.com/json/${ipAddress}?`;
+    // $.ajax({
+    //     url: url,
+    //     success: function(data) {
+    //     //    console.log(JSON.stringify(data,"",2));
+    //     //    console.log(ipAddress);
+    //         const city = data.city; 
+    //         const country = data.country; 
+    //         const postalCode = data.zip || "no postal code";
+    //         const timezone = data.timezone;
+    //         $("#detailLocation").html(`${city}, ${country}, ${postalCode}`);
+    //         $("#detailTimezone").html(`${timezone}`);
+    //         $("#detailIsp").html(data.isp);
+    //         const lat = data.lat;
+    //         const lon = data.lon;
+    //         mymap.setView([lat, lon], 13);
+    //         marker = L.marker([lat, lon]).addTo(mymap);
+    //     }
+    // });
 
     // using Geolocation API  ---->>>>>  https://w3c.github.io/geolocation-api/
     // only works for current location, but it the most precise location!!!!
