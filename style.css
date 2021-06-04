@@ -42,7 +42,6 @@ h1 {
 .container {
   height: 100vh;
   width: 100vw;
-  background-color: lime;
 }
 
 .header {
@@ -53,12 +52,13 @@ h1 {
 
 .main {
   height: 70%;
-  background-color: lightgray;
+  /* background-color: lightgray; */
   z-index: 1;
+  position: relative;
 }
 
 .ip-form {
-  margin-bottom: 1em;
+  margin: 0 auto 1em;
 }
 
 .input,
@@ -73,6 +73,7 @@ h1 {
 .input {
   border-radius: 15px 0 0 15px;
   width: 65%;
+  font-weight: 700;
 }
 
 .submit {
@@ -89,7 +90,9 @@ h1 {
   margin: 0 auto;
   padding: 1em 4em;
   z-index: 3;
+  position: relative;
   width: 80%;
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
 h1 {
@@ -113,6 +116,10 @@ h2 {
   margin-top: 0.25em;
 }
 
+#mapid {
+  height: 93%;
+}
+
 .attribution {
   font-size: 11px;
   text-align: center;
@@ -126,7 +133,7 @@ h2 {
   color: hsl(228, 45%, 44%);
 }
 
-@media (min-width: 750px) {
+@media (min-width: 790px) {
   .address-card {
     display: flex;
     flex-direction: row;
@@ -141,9 +148,14 @@ h2 {
   .col + .col::before {
     content: "";
     background-color: hsl(0, 0%, 59%);
-    height: 50%;
+    height: 100%;
     width: 2px;
     display: inline-block;
+    margin-right: 2px;
+  }
+
+  h2 {
+    margin-right: 3px;
   }
 
   .col {
@@ -156,5 +168,9 @@ h2 {
 
   .submit {
     width: 10%;
+  }
+
+  #mapid {
+    height: 95%;
   }
 }
